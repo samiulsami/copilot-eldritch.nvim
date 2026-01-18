@@ -25,41 +25,45 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 }
 ```
 
-## Configuration
-
-Default options:
-
+### Default options
 ```lua
-require("copilot-eldritch").setup({
-    max_length = 73,
-    min_length = 1,
-    max_distance_from_cursor = 10,
-    max_lines = 3,
-    repeat_ms = 50,
-    jitter_ms = 100, -- Random jitter added to repeat_ms for flickering effect
-    rand_hl_group = "CopilotEldritchHLGroup",
-    colors = {
-        red = { min = 133, max = 255 },
-        green = { min = 0, max = 0 },
-        blue = { min = 68, max = 68 },
-    },
-    chars = { ... } -- See source for default glyphs
-})
+{
+	-- Maximum length of the generated string.
+	max_length = 73,
+
+	-- Minimum length of the generated string.
+	min_length = 1,
+
+	-- Maximum random distance from the cursor position to start drawing glyphs.
+	max_distance_from_cursor = 10,
+
+	-- Maximum number of lines (vertical) to spread the across.
+	max_lines = 3,
+
+	-- Base speed of the animation tick in milliseconds.
+	repeat_ms = 50,
+
+	-- Random jitter added to repeat_ms for the flickering disappearance effect (0 to N ms).
+	jitter_ms = 100,
+
+	-- The highlight group used for the text.
+	-- By default, the foreground color is randomized based on colors.
+	rand_hl_group = "CopilotEldritchHLGroup",
+
+	-- RGB ranges for the random text color.
+	-- Contains red, green, blue, each with min and max (0-255).
+	colors = {
+		red = { min = 133, max = 255 },
+		green = { min = 0, max = 0 },
+		blue = { min = 68, max = 68 },
+	},
+
+	-- A list of strings (glyphs) or a list of lists.
+	-- If a list of lists is provided, a random set is chosen per activation.
+	-- See source for default glyphs.
+	chars = { ... }
+}
 ```
-
-### Options Documentation
-
-| Option | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `max_length` | `integer` | `73` | Maximum length of the generated spell string. |
-| `min_length` | `integer` | `1` | Minimum length of the generated spell string. |
-| `max_distance_from_cursor` | `integer` | `10` | Maximum random distance from the cursor position to start drawing glyphs. |
-| `max_lines` | `integer` | `3` | Maximum number of lines (vertical) to spread the spell across. |
-| `repeat_ms` | `integer` | `50` | Base speed of the animation tick in milliseconds. |
-| `jitter_ms` | `integer` | `100` | Random jitter added to `repeat_ms` for the flickering disappearance effect (0 to N ms). |
-| `rand_hl_group` | `string` | `"CopilotEldritchHLGroup"` | The highlight group used for the text. By default, the foreground color is randomized based on `colors`. |
-| `colors` | `table` | `{...}` | RGB ranges for the random text color. Contains `red`, `green`, `blue`, each with `min` and `max` (0-255). |
-| `chars` | `table` | `{...}` | A list of strings (glyphs) or a list of lists. If a list of lists is provided, a random set is chosen per activation. |
 
 ### Random Character Sets
 
